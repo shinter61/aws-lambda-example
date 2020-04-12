@@ -5,7 +5,7 @@ serverless + lambda + codepipeline + codebuild によるサーバーレスアプ
 ### Usage
 
 ```
-sls invoke -f main -d '{"key":"value"}'
+sls invoke -f verify-email -d '{"mail_address":"xxxxx@example.com"}'
 ```
 
 ### Reference
