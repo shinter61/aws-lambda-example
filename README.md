@@ -1,14 +1,14 @@
-##aws-lambda-sample
+## aws-lambda-sample
 
 serverless + lambda + codepipeline + codebuild によるサーバーレスアプリケーション
 
-###Usage
+### Usage
 
 ```
 sls invoke -f main -d '{"key":"value"}'
 ```
 
-###参考
+### Reference
 
 https://qiita.com/cm_sato_naoya/items/6a99acac9b833a5fae8e
 https://qiita.com/horike37/items/b295a91908fcfd4033a2
