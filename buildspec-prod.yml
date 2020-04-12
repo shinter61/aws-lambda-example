@@ -1,0 +1,10 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+       - yarn global add serverless
+       - yarn
+  build:
+    commands:
+       - sls deploy --stage prod
