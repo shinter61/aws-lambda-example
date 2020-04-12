@@ -1,0 +1,11 @@
+{
+  "name": "aws-lambda-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/shinter61/aws-lambda-example.git",
+  "author": "shinter61 <shinter61@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "serverless-python-requirements": "^5.1.0"
+  }
+}

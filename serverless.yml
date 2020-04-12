@@ -20,8 +20,13 @@ service: aws-lambda-example
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
 
+plugins:
+  - serverless-python-requirements
+
 custom:
   defaultStage: dev
+  pythonRequirements:
+    dockerizePip: true
 
 provider:
   name: aws
