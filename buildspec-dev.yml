@@ -7,4 +7,4 @@ phases:
        - yarn
   build:
     commands:
-       - sls deploy
+       - SLS_DEBUG=* sls deploy
