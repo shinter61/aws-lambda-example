@@ -26,7 +26,7 @@ plugins:
 custom:
   defaultStage: dev
   pythonRequirements:
-    dockerizePip: true
+    dockerizePip: false
 
 provider:
   name: aws
