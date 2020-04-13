@@ -22,8 +22,10 @@ def main(event, context):
         mxRecord = str(mxRecord)
         print(mxRecord)
     except Exception as e:
-        print('None of DNS query names exist')
-        exit()
+        return {
+            "statusCode": 400,
+            "body": "None of DNS query names exist"
+        }
 
     # メールアドレス存在チェック
     local_host = socket.gethostname()
