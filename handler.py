@@ -4,7 +4,7 @@ import socket
 import smtplib
 
 def main(event, context):
-    mail_address = event["mail_address"]
+    mail_address = event["queryStringParameters"]["mail_address"]
 
     # メールアドレス構文チェック
     match = re.match('[A-Za-z0-9._+]+@[A-Za-z]+.[A-Za-z]', mail_address)
