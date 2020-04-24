@@ -25,7 +25,7 @@ def main(event, context):
     # ドメインチェック
     mail_domain = re.search("(.*)(@)(.*)", mail_address).group(3) # ドメイン部分の取り出し
     try:
-        records  = dns.resolver.query(mail_domain, 'MX'
+        records  = dns.resolver.query(mail_domain, 'MX')
         mxRecord = records[0].exchange
         mxRecord = str(mxRecord)
         print(mxRecord)
@@ -77,4 +77,4 @@ def main(event, context):
                 "body": json.dumps(result_json)
             }
     except Exception as e:
-        print(e))
+        print(e)
