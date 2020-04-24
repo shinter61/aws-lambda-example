@@ -14,9 +14,13 @@ def main(event, context):
     mail_addresses = list(filter(lambda x:False if len(x) == 0 else True, mail_addresses))
     mail_addresses = list(map(lambda x: x.rstrip('&'), mail_addresses))
 
+    response = []
     for mail_address in mail_addresses:
         checked = check(mail_address)
+        response.append(checked)
         print(checked)
+
+    return response
 
 def check(mail_address):
     # メールアドレス構文チェック
