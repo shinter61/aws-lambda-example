@@ -50,7 +50,7 @@ def main(event, context):
         server.quit()
 
         result_json = {
-            "message": message,
+            "message": "Address exists" if code == 250 else "Address doesnt exists",
             "mailAddress": mail_address
         }
         return {
