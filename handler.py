@@ -11,12 +11,11 @@ def main(event, context):
     match = re.match('[A-Za-z0-9._+]+@[A-Za-z]+.[A-Za-z]', mail_address)
     if match == None:
         result_json = {
-            "result": False,
             "message": "syntax error",
-            "mail_address": mail_address
+            "mailAddress": mail_address
         }
         return {
-            "statusCode": 400,
+            "statusCode": 500,
             "body": json.dumps(result_json)
         }
 
@@ -29,12 +28,11 @@ def main(event, context):
         print(mxRecord)
     except Exception as e:
         result_json = {
-            "result": False,
             "message": "None of DNS query names exist",
-            "mail_address": mail_address
+            "mailAddress": mail_address
         }
         return {
-            "statusCode": 400,
+            "statusCode": 500,
             "body": json.dumps(result_json)
         }
 
@@ -51,25 +49,13 @@ def main(event, context):
         code, message = server.rcpt(str(mail_address))
         server.quit()
 
-        if code == 250:
-            result_json = {
-                "result": True,
-                "message": "Address exists",
-                "mail_address": mail_address
-            }
-            return {
-                "statusCode": 200,
-                "body": json.dumps(result_json)
-            }
-        else:
-            result_json = {
-                "result": False,
-                "message": "Address does not exists",
-                "mail_address": mail_address
-            }
-            return {
-                "statusCode": 400,
-                "body": json.dumps(result_json)
-            }
+        result_json = {
+            "message": message,
+            "mailAddress": mail_address
+        }
+        return {
+            "statusCode": code,
+            "body": json.dumps(result_json)
+        }
     except Exception as e:
         print(e)
