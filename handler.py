@@ -6,7 +6,6 @@ import smtplib
 
 def main(event, context):
     mail_address = event["queryStringParameters"]["mail_address"]
-    uuid = event["queryStringParameters"]["uuid"]
 
     # メールアドレス構文チェック
     match = re.match('[A-Za-z0-9._+]+@[A-Za-z]+.[A-Za-z]', mail_address)
@@ -14,8 +13,7 @@ def main(event, context):
         result_json = {
             "result": False,
             "message": "syntax error",
-            "mail_address": mail_address,
-            "uuid": uuid
+            "mail_address": mail_address
         }
         return {
             "statusCode": 400,
@@ -33,8 +31,7 @@ def main(event, context):
         result_json = {
             "result": False,
             "message": "None of DNS query names exist",
-            "mail_address": mail_address,
-            "uuid": uuid
+            "mail_address": mail_address
         }
         return {
             "statusCode": 400,
@@ -58,8 +55,7 @@ def main(event, context):
             result_json = {
                 "result": True,
                 "message": "Address exists",
-                "mail_address": mail_address,
-                "uuid": uuid
+                "mail_address": mail_address
             }
             return {
                 "statusCode": 200,
@@ -69,8 +65,7 @@ def main(event, context):
             result_json = {
                 "result": False,
                 "message": "Address does not exists",
-                "mail_address": mail_address,
-                "uuid": uuid
+                "mail_address": mail_address
             }
             return {
                 "statusCode": 400,
