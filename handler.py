@@ -3,10 +3,22 @@ import re
 import dns.resolver
 import socket
 import smtplib
+import urllib
 
 def main(event, context):
-    mail_address = event["queryStringParameters"]["mail_address"]
+    request_params = event['body']
 
+    decoded_str = urllib.parse.unquote(request_params)
+    mail_addresses = re.split('mailAddresses\[\]=', decoded_str)
+
+    mail_addresses = list(filter(lambda x:False if len(x) == 0 else True, mail_addresses))
+    mail_addresses = list(map(lambda x: x.rstrip('&'), mail_addresses))
+
+    for mail_address in mail_addresses:
+        checked = check(mail_address)
+        print(checked)
+
+def check(mail_address):
     # メールアドレス構文チェック
     match = re.match('[A-Za-z0-9._+]+@[A-Za-z]+.[A-Za-z]', mail_address)
     if match == None:
