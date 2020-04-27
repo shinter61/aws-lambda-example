@@ -28,7 +28,7 @@ def main(event, context):
         process_list.append(p)
 
     for process in process_list:
-        p.join()
+        process.join()
 
     returned_array = '|'.join(returned_array)
     print(returned_array)
