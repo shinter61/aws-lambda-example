@@ -4,10 +4,11 @@ import dns.resolver
 import socket
 import smtplib
 import urllib
+from multiprocessing import Pool
+import multiprocessing as multi
 
-# def main(event, context):
-def main(request_params):
-    # request_params = event['body']
+def main(event, context):
+    request_params = event['body']
 
     decoded_str = urllib.parse.unquote(request_params)
     mail_addresses = re.split('mailAddresses\[\]=', decoded_str)
@@ -15,15 +16,17 @@ def main(request_params):
     mail_addresses = list(filter(lambda x:False if len(x) == 0 else True, mail_addresses))
     mail_addresses = list(map(lambda x: x.rstrip('&'), mail_addresses))
 
-    response = []
-    for mail_address in mail_addresses:
-        checked = check(mail_address)
-        response.append(checked)
-        print(checked)
+    n_cores = multi.cpu_count()
+    print(n_cores)
+    p = Pool(n_cores)
+    response = p.map(func=check, iterable=mail_addresses)
 
-    ','.join(response)
+    response = '|'.join(response)
     print(response)
-    return response
+    return {
+        "statusCode": 200,
+        "body": response
+    }
 
 def check(mail_address):
     # メールアドレス構文チェック
