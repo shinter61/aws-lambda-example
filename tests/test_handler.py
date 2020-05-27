@@ -31,7 +31,7 @@ def test_none_of_dns(returned_list):
     assert returned_list[0] == expect_json
 
 def test_not_exists_address(returned_list):
-    mail_address = 'shinter62@gmail.com'
+    mail_address = 'matsumoto.shintaro.cb@gmail.com'
     expect_json = json.dumps({
         "statusCode": 550,
         "message": "Address doesnt exists",
@@ -41,7 +41,7 @@ def test_not_exists_address(returned_list):
     assert returned_list[0] == expect_json
 
 def test_exists_address(returned_list):
-    mail_address = 'shinter61@gmail.com'
+    mail_address = 'matsumoto.shintaro.bc@gmail.com'
     expect_json = json.dumps({
         "statusCode": 250,
         "message": "Address exists",
