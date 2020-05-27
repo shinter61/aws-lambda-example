@@ -7,6 +7,6 @@ jobs:
     steps:
       - checkout
       - run:
-          command: pip install pytest
+          command: sudo pip install pytest
       - run:
           command: pytest tests/
