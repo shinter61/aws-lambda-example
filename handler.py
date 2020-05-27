@@ -10,7 +10,7 @@ def main(event, context):
     request_params = event['body']
 
     decoded_str = urllib.parse.unquote(request_params)
-    mail_addresses = re.split('mailAddresses\[\]=', decoded_str)
+    mail_addresses = re.split(r'mailAddresses\[\]=', decoded_str)
 
     mail_addresses = list(filter(lambda x:False if len(x) == 0 else True, mail_addresses))
     mail_addresses = list(map(lambda x: x.rstrip('&'), mail_addresses))
